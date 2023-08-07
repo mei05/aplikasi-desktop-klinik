@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="puskesmasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Dokter">
+    <Key>
+      <PropertyRef Name="kode_dokter" />
+    </Key>
+    <Property Name="kode_dokter" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="nama_dokter" Type="nvarchar(max)" />
+    <Property Name="alamat" Type="nvarchar" MaxLength="50" />
+    <Property Name="pendidikan" Type="varchar(max)" />
+    <Property Name="no_telp" Type="nvarchar" MaxLength="15" />
+    <Property Name="spesialis" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Obat">
+    <Key>
+      <PropertyRef Name="kode_obat" />
+    </Key>
+    <Property Name="kode_obat" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="nama_obat" Type="nvarchar(max)" />
+    <Property Name="harga" Type="int" />
+  </EntityType>
+  <EntityType Name="Pasien">
+    <Key>
+      <PropertyRef Name="kode_pasien" />
+    </Key>
+    <Property Name="kode_pasien" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="nama_pasien" Type="nvarchar(max)" />
+    <Property Name="alamat" Type="nvarchar" MaxLength="50" />
+    <Property Name="tempat_lahir" Type="nvarchar" MaxLength="50" />
+    <Property Name="tanggal_lahir" Type="date" />
+    <Property Name="jenis_kelamin" Type="nvarchar" MaxLength="50" />
+    <Property Name="agama" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Transaksi">
+    <Key>
+      <PropertyRef Name="kode_transaksi" />
+    </Key>
+    <Property Name="kode_transaksi" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="tanggal" Type="datetime" />
+    <Property Name="kode_pasien" Type="nchar" MaxLength="10" />
+    <Property Name="kode_obat" Type="nchar" MaxLength="10" />
+    <Property Name="kode_dokter" Type="nchar" MaxLength="10" />
+    <Property Name="total" Type="int" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="nama" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="role" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_Transaksi_ToTableDokter2">
+    <End Role="Dokter" Type="Self.Dokter" Multiplicity="0..1" />
+    <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dokter">
+        <PropertyRef Name="kode_dokter" />
+      </Principal>
+      <Dependent Role="Transaksi">
+        <PropertyRef Name="kode_dokter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaksi_ToTableObat">
+    <End Role="Obat" Type="Self.Obat" Multiplicity="0..1" />
+    <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Obat">
+        <PropertyRef Name="kode_obat" />
+      </Principal>
+      <Dependent Role="Transaksi">
+        <PropertyRef Name="kode_obat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaksi_ToTablePasien">
+    <End Role="Pasien" Type="Self.Pasien" Multiplicity="0..1" />
+    <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pasien">
+        <PropertyRef Name="kode_pasien" />
+      </Principal>
+      <Dependent Role="Transaksi">
+        <PropertyRef Name="kode_pasien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="puskesmasModelStoreContainer">
+    <EntitySet Name="Dokter" EntityType="Self.Dokter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Obat" EntityType="Self.Obat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pasien" EntityType="Self.Pasien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transaksi" EntityType="Self.Transaksi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Transaksi_ToTableDokter2" Association="Self.FK_Transaksi_ToTableDokter2">
+      <End Role="Dokter" EntitySet="Dokter" />
+      <End Role="Transaksi" EntitySet="Transaksi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaksi_ToTableObat" Association="Self.FK_Transaksi_ToTableObat">
+      <End Role="Obat" EntitySet="Obat" />
+      <End Role="Transaksi" EntitySet="Transaksi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaksi_ToTablePasien" Association="Self.FK_Transaksi_ToTablePasien">
+      <End Role="Pasien" EntitySet="Pasien" />
+      <End Role="Transaksi" EntitySet="Transaksi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

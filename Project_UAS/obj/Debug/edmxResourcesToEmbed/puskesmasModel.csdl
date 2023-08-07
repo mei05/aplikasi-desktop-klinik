@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="puskesmasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dokter">
+    <Key>
+      <PropertyRef Name="kode_dokter" />
+    </Key>
+    <Property Name="kode_dokter" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="nama_dokter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="alamat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pendidikan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="no_telp" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="spesialis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Transaksis" Relationship="Self.FK_Transaksi_ToTableDokter2" FromRole="Dokter" ToRole="Transaksi" />
+  </EntityType>
+  <EntityType Name="Obat">
+    <Key>
+      <PropertyRef Name="kode_obat" />
+    </Key>
+    <Property Name="kode_obat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="nama_obat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="harga" Type="Int32" />
+    <NavigationProperty Name="Transaksis" Relationship="Self.FK_Transaksi_ToTableObat" FromRole="Obat" ToRole="Transaksi" />
+  </EntityType>
+  <EntityType Name="Pasien">
+    <Key>
+      <PropertyRef Name="kode_pasien" />
+    </Key>
+    <Property Name="kode_pasien" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="nama_pasien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="alamat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tempat_lahir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tanggal_lahir" Type="DateTime" Precision="0" />
+    <Property Name="jenis_kelamin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="agama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Nullable="true" Unicode="true" />
+    <NavigationProperty Name="Transaksis" Relationship="Self.FK_Transaksi_ToTablePasien" FromRole="Pasien" ToRole="Transaksi" />
+  </EntityType>
+  <EntityType Name="Transaksi">
+    <Key>
+      <PropertyRef Name="kode_transaksi" />
+    </Key>
+    <Property Name="kode_transaksi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="tanggal" Type="DateTime" Precision="3" />
+    <Property Name="kode_pasien" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="kode_obat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="kode_dokter" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="total" Type="Int32" />
+    <NavigationProperty Name="Dokter" Relationship="Self.FK_Transaksi_ToTableDokter2" FromRole="Transaksi" ToRole="Dokter" />
+    <NavigationProperty Name="Obat" Relationship="Self.FK_Transaksi_ToTableObat" FromRole="Transaksi" ToRole="Obat" />
+    <NavigationProperty Name="Pasien" Relationship="Self.FK_Transaksi_ToTablePasien" FromRole="Transaksi" ToRole="Pasien" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Transaksi_ToTableDokter2">
+    <End Role="Dokter" Type="Self.Dokter" Multiplicity="0..1" />
+    <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dokter">
+        <PropertyRef Name="kode_dokter" />
+      </Principal>
+      <Dependent Role="Transaksi">
+        <PropertyRef Name="kode_dokter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaksi_ToTableObat">
+    <End Role="Obat" Type="Self.Obat" Multiplicity="0..1" />
+    <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Obat">
+        <PropertyRef Name="kode_obat" />
+      </Principal>
+      <Dependent Role="Transaksi">
+        <PropertyRef Name="kode_obat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaksi_ToTablePasien">
+    <End Role="Pasien" Type="Self.Pasien" Multiplicity="0..1" />
+    <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pasien">
+        <PropertyRef Name="kode_pasien" />
+      </Principal>
+      <Dependent Role="Transaksi">
+        <PropertyRef Name="kode_pasien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="puskesmasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dokters" EntityType="Self.Dokter" />
+    <EntitySet Name="Obats" EntityType="Self.Obat" />
+    <EntitySet Name="Pasiens" EntityType="Self.Pasien" />
+    <EntitySet Name="Transaksis" EntityType="Self.Transaksi" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Transaksi_ToTableDokter2" Association="Self.FK_Transaksi_ToTableDokter2">
+      <End Role="Dokter" EntitySet="Dokters" />
+      <End Role="Transaksi" EntitySet="Transaksis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaksi_ToTableObat" Association="Self.FK_Transaksi_ToTableObat">
+      <End Role="Obat" EntitySet="Obats" />
+      <End Role="Transaksi" EntitySet="Transaksis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaksi_ToTablePasien" Association="Self.FK_Transaksi_ToTablePasien">
+      <End Role="Pasien" EntitySet="Pasiens" />
+      <End Role="Transaksi" EntitySet="Transaksis" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

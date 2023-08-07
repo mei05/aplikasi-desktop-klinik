@@ -1,0 +1,38 @@
+﻿<Window x:Class="Project_UAS.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_UAS"
+        mc:Ignorable="d"
+         Title="Puskesmas Sehati" Height="600" Width="1000">
+    <Grid>
+        <Image Source="E:\.Sem4\BAD\Project_UAS\wp.jpg" Stretch="UniformToFill" Opacity="0.85"></Image>
+        <Menu Background="Transparent" HorizontalAlignment="Center" Height="31" VerticalAlignment="Top" Width="782" Margin="73,10,137,0">
+            <MenuItem Header="_Login" x:Name="mnLogin" Foreground="WhiteSmoke" Width="142" FontSize="20" FontWeight="Black"/>
+            <MenuItem Header="_Pasien" x:Name="mnPasien" Foreground="WhiteSmoke" Height="26" Width="167" Margin="30,0,0,0" FontSize="20" FontWeight="Black">
+                <MenuItem Header="_Pasien Lama" x:Name="mnPasienLama" Foreground="Gray"  FontSize="14" Click="mnPasienLama_Click"/>
+                <MenuItem Header="_Pasien Baru" x:Name="mnPasienBaru" Foreground="Gray"  FontSize="14" Click="mnPasienBaru_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Dokter" x:Name="mnDokter" Foreground="WhiteSmoke" Width="157" FontSize="20" FontWeight="Black">
+                <MenuItem Header="_Data Dokter" x:Name="mnDokterLama" Foreground="Gray"  FontSize="14" Click="mnDokterLama_Click"/>
+                <MenuItem Header="_Tambah Dokter" x:Name="mnDokterBaru" Foreground="Gray"  FontSize="14" Click="mnDokterBaru_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Layanan" x:Name="mnObat" Foreground="WhiteSmoke" Width="131" FontSize="20" FontWeight="Black">
+                <MenuItem Header="_Data Layanan" x:Name="mnObatLama" Foreground="Gray"  FontSize="14" Click="mnObatLama_Click"/>
+                <MenuItem Header="_Tambah Layanan" x:Name="mnObatBaru" Foreground="Gray"  FontSize="14" Click="mnObatBaru_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="_Transaksi" x:Name="mTransaksi" Foreground="WhiteSmoke" Width="142" FontSize="20" FontWeight="Black">
+                <MenuItem Header="_Tambah Transaksi" x:Name="mnTransaksi" Foreground="Gray"  FontSize="14" Click="mnTransaksi_Click"/>
+                <MenuItem Header="_Riwayat Transaksi" x:Name="mnHTransaksi" Foreground="Gray"  FontSize="14" Click="mnHTransaksi_Click" />
+            </MenuItem>
+        </Menu>
+
+        <Image Source="E:\.Sem4\BAD\Project_Puskesmas\sehati.png" HorizontalAlignment="Left" Height="96" Margin="725,307,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.282,-0.268"/>
+        <Button x:Name="exit_btn" Content="Keluar" Background="Red" Foreground="White" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Height="26" Margin="884,10,0,0" VerticalAlignment="Top" Width="77" Click="exit_btn_Click"/>
+        <Label Content="Selamat Datang!" Foreground="Navy" HorizontalAlignment="Center" FontSize="100" FontWeight="ExtraBold" FontFamily="Cambria" Height="144" Margin="132,158,113,0" VerticalAlignment="Top" Width="747" RenderTransformOrigin="0.321,0.684"/>
+        <Label Content="Di Puskesmas Sehati" FontSize="50" FontWeight="Black" Foreground="Cyan" HorizontalAlignment="Left" Height="78" Margin="247,307,0,0" VerticalAlignment="Top" Width="519"/>
+        <Image Source="E:\.Sem4\BAD\Project_Puskesmas\logo.png" HorizontalAlignment="Left" Height="100" Margin="10,49,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.077,0.357"/>
+    </Grid>
+</Window>

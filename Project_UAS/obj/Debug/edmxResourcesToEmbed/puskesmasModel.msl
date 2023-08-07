@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="puskesmasModelStoreContainer" CdmEntityContainer="puskesmasEntities">
+    <EntitySetMapping Name="Dokters">
+      <EntityTypeMapping TypeName="puskesmasModel.Dokter">
+        <MappingFragment StoreEntitySet="Dokter">
+          <ScalarProperty Name="kode_dokter" ColumnName="kode_dokter" />
+          <ScalarProperty Name="nama_dokter" ColumnName="nama_dokter" />
+          <ScalarProperty Name="alamat" ColumnName="alamat" />
+          <ScalarProperty Name="pendidikan" ColumnName="pendidikan" />
+          <ScalarProperty Name="no_telp" ColumnName="no_telp" />
+          <ScalarProperty Name="spesialis" ColumnName="spesialis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Obats">
+      <EntityTypeMapping TypeName="puskesmasModel.Obat">
+        <MappingFragment StoreEntitySet="Obat">
+          <ScalarProperty Name="kode_obat" ColumnName="kode_obat" />
+          <ScalarProperty Name="nama_obat" ColumnName="nama_obat" />
+          <ScalarProperty Name="harga" ColumnName="harga" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pasiens">
+      <EntityTypeMapping TypeName="puskesmasModel.Pasien">
+        <MappingFragment StoreEntitySet="Pasien">
+          <ScalarProperty Name="kode_pasien" ColumnName="kode_pasien" />
+          <ScalarProperty Name="nama_pasien" ColumnName="nama_pasien" />
+          <ScalarProperty Name="alamat" ColumnName="alamat" />
+          <ScalarProperty Name="tempat_lahir" ColumnName="tempat_lahir" />
+          <ScalarProperty Name="tanggal_lahir" ColumnName="tanggal_lahir" />
+          <ScalarProperty Name="jenis_kelamin" ColumnName="jenis_kelamin" />
+          <ScalarProperty Name="agama" ColumnName="agama" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transaksis">
+      <EntityTypeMapping TypeName="puskesmasModel.Transaksi">
+        <MappingFragment StoreEntitySet="Transaksi">
+          <ScalarProperty Name="kode_transaksi" ColumnName="kode_transaksi" />
+          <ScalarProperty Name="tanggal" ColumnName="tanggal" />
+          <ScalarProperty Name="kode_pasien" ColumnName="kode_pasien" />
+          <ScalarProperty Name="kode_obat" ColumnName="kode_obat" />
+          <ScalarProperty Name="kode_dokter" ColumnName="kode_dokter" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="puskesmasModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="nama" ColumnName="nama" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
